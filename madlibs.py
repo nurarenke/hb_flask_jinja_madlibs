@@ -1,6 +1,6 @@
 """A madlib game that compliments its users."""
 
-from random import choice
+from random import choice, sample
 
 from flask import Flask, render_template, request
 
@@ -19,7 +19,7 @@ AWESOMENESS = [
 def start_here():
     """Display homepage."""
 
-    return "Hi! This is the home page."
+    return render_template("homepage.html")
 
 
 @app.route('/hello')
@@ -35,11 +35,11 @@ def greet_person():
 
     player = request.args.get("person")
 
-    compliment = choice(AWESOMENESS)
+    compliments = sample(AWESOMENESS, 3)
 
     return render_template("compliment.html",
                            person=player,
-                           compliment=compliment)
+                           compliments=compliments)
 
 
 @app.route('/game')
@@ -64,18 +64,17 @@ def show_madlib():
     user_adjective = request.args.get("adjective")
     user_animals = request.args.getlist("fav_animals")
 
-    # user_animals = []
+    if len(user_animals) > 1:
+        last_two_animals = (user_animals[-2] + " and " + user_animals[-1])
+        user_animals = ', '.join(user_animals[:-2]) + ", " + last_two_animals
+    elif len(user_animals == 1):
+        user_animals = user_animals[0]
 
-    # if 'cat' == 'on':
-    #     user_animals.append('cat')
-    # elif 'dog' == 'on':
-    #     user_animals.append('dog')
-    # elif 'dinosaur' == 'on':
-    #     user_animals.append('dinosaur')
-    # elif 'otter' == 'on':
-    #     user_animals.append('otter')
 
-    return render_template('madlib.html', color=user_color,
+    madlib_choices = ['madlib.html', 'madlib_two.html']
+
+
+    return render_template(choice(madlib_choices), color=user_color,
         noun=user_noun, person=user_person, adjective=user_adjective,
         animals=user_animals)
 

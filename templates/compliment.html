@@ -2,9 +2,16 @@
 <html>
 <head>
   <title>A Compliment</title>
+  <link rel="stylesheet" type="text/css" href="/static/madlibs.css">
 </head>
 <body>
-    Hi {{ person }}! I think you're {{ compliment }}!
+    <h1>Hi {{ person }}! I think you're 
+        <ul>
+        {%for compliment in compliments%}
+        
+            <li>{{ compliment }}</li>    
+        {% endfor %}
+        </ul>!</h1>
     <form action="/game">
     Would you like to play a game?
     <input type="radio" name="game" value="yes">Yes
