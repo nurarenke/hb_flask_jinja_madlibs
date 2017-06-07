@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+  <title>Getting started</title>
+</head>
+<body>
+    Great, let's play a game! 
+    <form action="/madlib">
+      Please give us the name of a person:
+      <input type="text" name="person">
+      <br><br>
+
+      Please choose a color?
+      <input type="radio" name="color" value="blue">Blue
+      <input type="radio" name="color" value="yellow">Yellow
+      <br><br>
+
+      Please provide us with a noun?
+      <input  type="text" name="noun">
+      <br><br>
+
+      Please provide us with an adjective?
+      <select name="adjective">
+        <option value="pretty">Pretty</option>
+        <option value="funny">Funny</option>
+        <option value="balloonicorny">Balloonicorny</option>
+      </select>
+      <br><br>
+
+      Please check off all the animals you like:
+      <input type="checkbox" name="fav_animals" value="cat">Cat
+      <input type="checkbox" name="fav_animals" value="dog">Dog
+      <input type="checkbox" name="fav_animals" value="dinosaur">Dinosaur
+      <input type="checkbox" name="fav_animals" value="otter">Otter
+
+
+      <input type="submit">
+    </form>
+</body>
+</html>
